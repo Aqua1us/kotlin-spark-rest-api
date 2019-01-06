@@ -1,4 +1,4 @@
-package user
+package com.amtkxa.kotlinsparkrestapi.user
 
 data class User(
     val id: Long,
