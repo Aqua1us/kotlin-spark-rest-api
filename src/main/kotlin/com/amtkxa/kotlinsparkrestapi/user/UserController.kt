@@ -4,9 +4,9 @@ import spark.Route
 
 
 class UserController {
-    private val repository = UserRepository()
+    private val userService = UserService()
 
     fun index(): Route = Route { request, response ->
-        repository.findAll()
+        userService.findAll()
     }
 }
