@@ -6,7 +6,7 @@ import com.amtkxa.kotlinsparkrestapi.common.DBConnectionManager
 class UserRepository {
 
     fun findAll(): List<User> =
-        DBConnectionManager.getConnection().use { conn ->
-            conn.createQuery("select * from user").executeAndFetch(User::class.java)
+        DBConnectionManager.getConnection().open().use { conn ->
+            conn.createQuery("SELECT id, name FROM user").executeAndFetch(User::class.java)
         }
 }
