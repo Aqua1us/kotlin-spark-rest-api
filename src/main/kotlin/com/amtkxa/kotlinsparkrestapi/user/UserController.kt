@@ -16,10 +16,15 @@ class UserController {
     init {
         path("/users") {
             get("", index(), jsonTransformer)
+            get("/:id", show(), jsonTransformer)
         }
     }
 
     fun index(): Route = Route { request, response ->
         userService.findAll()
+    }
+
+    fun show(): Route = Route { request, response ->
+        userService.findById(request.params("id"))
     }
 }
