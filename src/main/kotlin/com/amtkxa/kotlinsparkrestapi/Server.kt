@@ -1,22 +1,23 @@
 package com.amtkxa.kotlinsparkrestapi
 
-import com.amtkxa.kotlinsparkrestapi.common.JsonTransformer
-import com.amtkxa.kotlinsparkrestapi.user.UserController
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.module.kotlin.registerKotlinModule
-import spark.Spark.*
+import com.amtkxa.kotlinsparkrestapi.annotation.SparkController
+import org.reflections.Reflections
+import org.reflections.scanners.MethodAnnotationsScanner
+import org.reflections.scanners.SubTypesScanner
+import org.reflections.scanners.TypeAnnotationsScanner
+import org.slf4j.LoggerFactory
+import spark.Spark.port
 import spark.servlet.SparkApplication
 
 class Server : SparkApplication {
-    private val jsonTransformer = JsonTransformer(ObjectMapper().registerKotlinModule())
-    private val userController = UserController()
+    val logger = LoggerFactory.getLogger(Server::class.java)
+
+    override fun init() = Unit
 
     constructor(args: Array<String>) {
         initServer()
-        initRoutes()
+        initControllers()
     }
-
-    override fun init() = Unit
 
     /**
      * Initialize the configuration for embedded Jetty server.
@@ -26,13 +27,18 @@ class Server : SparkApplication {
     }
 
     /**
-     * Initialize the route of the Spark application.
+     * Initialize controllers.
+     *
+     * @apiNote The Route setting is described in the class given the {@link SparkController) annotation.
      */
-    private fun initRoutes() {
-        redirect.any("/", "/users")
-
-        path("/users") {
-            get("", userController.index(), jsonTransformer)
+    private fun initControllers() {
+        val reflections = Reflections(
+            this.javaClass.`package`.name, MethodAnnotationsScanner(), TypeAnnotationsScanner(), SubTypesScanner()
+        )
+        val controllers = reflections.getTypesAnnotatedWith(SparkController::class.java)
+        controllers.forEach {
+            logger.info("Instantiating controller: " + it.name)
+            it.newInstance()
         }
     }
 }
