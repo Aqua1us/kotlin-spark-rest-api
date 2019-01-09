@@ -6,4 +6,6 @@ class UserService {
 
     fun findAll(): List<User> = userRepository.findAll()
     fun findById(id: String): List<User> = userRepository.findById(id)
+    fun save(id: Long, name: String) = userRepository.save(id, name)
+
 }

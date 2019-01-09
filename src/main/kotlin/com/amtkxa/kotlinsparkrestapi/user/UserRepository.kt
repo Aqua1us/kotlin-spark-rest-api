@@ -17,4 +17,13 @@ class UserRepository {
                 .addParameter("id", id)
                 .executeAndFetch(User::class.java)
         }
+
+    fun save(id: Long, name: String) =
+        DBConnectionManager.getConnection().open().use { conn ->
+            conn.createQuery("INSERT INTO user (id, name) VALUES (:id, :name)")
+                .addParameter("id", id)
+                .addParameter("name", name)
+                .executeUpdate()
+            id
+        }
 }
