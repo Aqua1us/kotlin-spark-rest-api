@@ -18,6 +18,7 @@ class UserController {
             get("", index(), jsonTransformer)
             get("/:id", show(), jsonTransformer)
             post("", create(), jsonTransformer)
+            patch("", update(), jsonTransformer)
         }
     }
 
@@ -34,5 +35,12 @@ class UserController {
         val createdId = userService.save(request.id, request.name)
         res.status(201)
         createdId
+    }
+
+    fun update(): Route = Route { req, res ->
+        val request = mapper.readValue(req.body(), User::class.java)
+        val updatedId = userService.update(request.id, request.name)
+        res.status(200)
+        updatedId
     }
 }

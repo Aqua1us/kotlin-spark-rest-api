@@ -26,4 +26,13 @@ class UserRepository {
                 .executeUpdate()
             id
         }
+
+    fun update(id: Long, name: String) =
+        DBConnectionManager.getConnection().open().use { conn ->
+            conn.createQuery("UPDATE user SET name = :name WHERE id = :id")
+                .addParameter("id", id)
+                .addParameter("name", name)
+                .executeUpdate()
+            id
+        }
 }
