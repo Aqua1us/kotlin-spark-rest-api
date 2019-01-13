@@ -28,7 +28,9 @@ class UserController {
     }
 
     private fun show(): Route = Route { req, res ->
-        userService.findById(req.params("id"))
+        userService.findById(
+            id = req.params("id").toLong()
+        )
     }
 
     private fun create(): Route = Route { req, res ->

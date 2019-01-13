@@ -11,7 +11,7 @@ class UserRepository {
                 .executeAndFetch(User::class.java)
         }
 
-    fun findById(id: String): List<User> =
+    fun findById(id: Long): List<User> =
         DBConnectionManager.getConnection().open().use { conn ->
             conn.createQuery("SELECT id, name FROM user WHERE id = :id")
                 .addParameter("id", id)
