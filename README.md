@@ -9,6 +9,7 @@ This is a simple CRUD REST API created using Kotlin and Spark.
 * [Kotlin](https://github.com/JetBrains/kotlin)
 * [Spark](https://github.com/perwendel/spark)
 * [Sql2o](/github.com/aaberg/sql2o)
+* [Jackson](https://github.com/FasterXML/jackson)
 
 ## Get the source codes
 Get a copy of the source codes into local system.
