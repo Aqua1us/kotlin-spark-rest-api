@@ -18,7 +18,7 @@ class UserRepository {
                 .executeAndFetch(User::class.java)
         }
 
-    fun save(id: Long, name: String) =
+    fun create(id: Long, name: String) =
         DBConnectionManager.getConnection().open().use { conn ->
             conn.createQuery("INSERT INTO user (id, name) VALUES (:id, :name)")
                 .addParameter("id", id)
@@ -32,6 +32,14 @@ class UserRepository {
             conn.createQuery("UPDATE user SET name = :name WHERE id = :id")
                 .addParameter("id", id)
                 .addParameter("name", name)
+                .executeUpdate()
+            id
+        }
+
+    fun delete(id: Long) =
+        DBConnectionManager.getConnection().open().use { conn ->
+            conn.createQuery("DELETE FROM user WHERE id = :id")
+                .addParameter("id", id)
                 .executeUpdate()
             id
         }

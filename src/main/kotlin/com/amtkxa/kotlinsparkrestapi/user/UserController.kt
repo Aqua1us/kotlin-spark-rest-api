@@ -19,28 +19,42 @@ class UserController {
             get("/:id", show(), jsonTransformer)
             post("", create(), jsonTransformer)
             patch("", update(), jsonTransformer)
+            delete("/:id", destroy(), jsonTransformer)
         }
     }
 
-    fun index(): Route = Route { req, res ->
+    private fun index(): Route = Route { req, res ->
         userService.findAll()
     }
 
-    fun show(): Route = Route { req, res ->
+    private fun show(): Route = Route { req, res ->
         userService.findById(req.params("id"))
     }
 
-    fun create(): Route = Route { req, res ->
+    private fun create(): Route = Route { req, res ->
         val request = mapper.readValue(req.body(), User::class.java)
-        val createdId = userService.save(request.id, request.name)
+        val id = userService.create(
+            id = request.id,
+            name = request.name
+        )
         res.status(201)
-        createdId
+        id
     }
 
-    fun update(): Route = Route { req, res ->
+    private fun update(): Route = Route { req, res ->
         val request = mapper.readValue(req.body(), User::class.java)
-        val updatedId = userService.update(request.id, request.name)
+        val id = userService.update(
+            id = request.id,
+            name = request.name
+        )
         res.status(200)
-        updatedId
+        id
+    }
+
+    private fun destroy(): Route = Route { req, res ->
+        userService.delete(
+            id = req.params("id").toLong()
+        )
+        res.status(204)
     }
 }
