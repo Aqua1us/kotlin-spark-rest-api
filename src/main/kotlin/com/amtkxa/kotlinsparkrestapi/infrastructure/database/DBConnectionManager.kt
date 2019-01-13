@@ -1,4 +1,4 @@
-package com.amtkxa.kotlinsparkrestapi.common
+package com.amtkxa.kotlinsparkrestapi.infrastructure.database
 
 import org.sql2o.Sql2o
 
@@ -11,6 +11,7 @@ class DBConnectionManager {
             "testuser"
         )
 
-        fun getConnection(): Sql2o = sql2o
+        fun getConnection(): Sql2o =
+            sql2o
     }
 }

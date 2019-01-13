@@ -1,6 +1,6 @@
 package com.amtkxa.kotlinsparkrestapi
 
-import com.amtkxa.kotlinsparkrestapi.annotation.SparkController
+import com.amtkxa.kotlinsparkrestapi.infrastructure.annotation.SparkController
 import org.reflections.Reflections
 import org.reflections.scanners.MethodAnnotationsScanner
 import org.reflections.scanners.SubTypesScanner

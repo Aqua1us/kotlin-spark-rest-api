@@ -1,7 +1,7 @@
 package com.amtkxa.kotlinsparkrestapi.user
 
-import com.amtkxa.kotlinsparkrestapi.annotation.SparkController
-import com.amtkxa.kotlinsparkrestapi.common.JsonTransformer
+import com.amtkxa.kotlinsparkrestapi.infrastructure.annotation.SparkController
+import com.amtkxa.kotlinsparkrestapi.infrastructure.util.JsonTransformer
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import spark.Route
@@ -9,7 +9,8 @@ import spark.Spark.*
 
 @SparkController
 class UserController {
-    private val jsonTransformer = JsonTransformer(ObjectMapper().registerKotlinModule())
+    private val jsonTransformer =
+        JsonTransformer(ObjectMapper().registerKotlinModule())
     private val mapper = ObjectMapper()
     private val userService = UserService()
 

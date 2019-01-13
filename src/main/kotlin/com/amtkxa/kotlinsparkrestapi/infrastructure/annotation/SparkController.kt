@@ -1,4 +1,4 @@
-package com.amtkxa.kotlinsparkrestapi.annotation
+package com.amtkxa.kotlinsparkrestapi.infrastructure.annotation
 
 @Retention(AnnotationRetention.RUNTIME)
 @Target(AnnotationTarget.CLASS)

@@ -1,6 +1,6 @@
 package com.amtkxa.kotlinsparkrestapi.user
 
-import com.amtkxa.kotlinsparkrestapi.common.DBConnectionManager
+import com.amtkxa.kotlinsparkrestapi.infrastructure.database.DBConnectionManager
 
 
 class UserRepository {
