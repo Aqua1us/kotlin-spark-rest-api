@@ -1,11 +1,12 @@
 package com.amtkxa.kotlinsparkrestapi.domain.service
 
 import com.amtkxa.kotlinsparkrestapi.domain.model.User
+import com.amtkxa.kotlinsparkrestapi.domain.repository.UserRepository
 import com.amtkxa.kotlinsparkrestapi.infrastructure.repository.UserRepositoryImpl
 
 
 class UserServiceImpl : UserService {
-    override val userRepository = UserRepositoryImpl()
+    override val userRepository: UserRepository = UserRepositoryImpl()
 
     /**
      * {@inheritDoc}

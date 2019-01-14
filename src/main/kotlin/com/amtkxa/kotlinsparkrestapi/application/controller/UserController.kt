@@ -2,6 +2,7 @@ package com.amtkxa.kotlinsparkrestapi.application.controller
 
 import com.amtkxa.kotlinsparkrestapi.application.helper.JsonTransformer
 import com.amtkxa.kotlinsparkrestapi.domain.model.User
+import com.amtkxa.kotlinsparkrestapi.domain.service.UserService
 import com.amtkxa.kotlinsparkrestapi.domain.service.UserServiceImpl
 import com.amtkxa.kotlinsparkrestapi.infrastructure.annotation.SparkController
 import com.fasterxml.jackson.databind.ObjectMapper
@@ -13,7 +14,7 @@ import spark.Spark.*
 class UserController {
     private val jsonTransformer = JsonTransformer(ObjectMapper().registerKotlinModule())
     private val mapper = ObjectMapper()
-    private val userService = UserServiceImpl()
+    private val userService: UserService = UserServiceImpl()
 
     init {
         path("/users") {
