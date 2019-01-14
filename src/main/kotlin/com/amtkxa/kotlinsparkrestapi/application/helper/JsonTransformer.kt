@@ -7,7 +7,8 @@ class JsonTransformer(private val objectMapper: ObjectMapper) : ResponseTransfor
     /**
      * Generates a JSON from a Java object and returns the generated JSON as a string.
      *
-     * @return list of User
+     * @param model Java object
+     * @return JSON as a string
      */
     override fun render(model: Any?): String = objectMapper.writeValueAsString(model)
 }
