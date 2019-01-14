@@ -1,4 +1,4 @@
-package com.amtkxa.kotlinsparkrestapi.infrastructure.util
+package com.amtkxa.kotlinsparkrestapi.application.helper
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import spark.ResponseTransformer

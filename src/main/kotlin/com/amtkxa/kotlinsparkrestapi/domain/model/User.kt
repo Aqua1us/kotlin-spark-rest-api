@@ -1,4 +1,4 @@
-package com.amtkxa.kotlinsparkrestapi.user
+package com.amtkxa.kotlinsparkrestapi.domain.model
 
 import com.fasterxml.jackson.annotation.JsonProperty
 

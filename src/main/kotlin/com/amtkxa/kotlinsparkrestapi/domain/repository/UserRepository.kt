@@ -1,5 +1,6 @@
-package com.amtkxa.kotlinsparkrestapi.user
+package com.amtkxa.kotlinsparkrestapi.domain.repository
 
+import com.amtkxa.kotlinsparkrestapi.domain.model.User
 import com.amtkxa.kotlinsparkrestapi.infrastructure.database.DBConnectionManager
 
 
